@@ -5,18 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jules sky</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.38.1/css-doodle.min.js"></script>
 </head>
 <body>
-    <css-doodle seed="sunset">
-        :doodle {
-            @grid: 1x1 / 100vw 100vh;
-            overflow: visible;
-        }
-        width: 1px;
-        height: 1px;
-        background: transparent;
-        box-shadow: @m10( @r(100vw) @r(100vh) @r(30vmin, 50vmin) @r(40vmin) #f3ac94);
-    </css-doodle>
+    <div id="clouds"></div>
+    <script src="sky.js"></script>
 </body>
 </html>

@@ -2,22 +2,33 @@ body {
     margin: 0;
     min-height: 100vh;
     background: #A3A1A6;
-    background: linear-gradient(160deg, #A3A1A6 45%, #DBCAAE 71%, #FDD597 89%);
+    background: linear-gradient(160deg, #a3a2aa 45%, #DBCAAE 71%, #FDD597 89%);
     position: relative;
+    overflow: hidden;
 }
 
-css-doodle {
+#clouds {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
     z-index: 0;
-    display: block;
     pointer-events: none;
 }
 
-body > *:not(css-doodle) {
+.cloud {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(243, 172, 148, var(--opacity, 0.6));
+    filter: blur(var(--blur, 80px));
+    width: var(--size, 200px);
+    height: var(--size, 200px);
+    left: var(--x, 0);
+    top: var(--y, 50vh);
+}
+
+body > *:not(#clouds) {
     position: relative;
     z-index: 1;
 }
