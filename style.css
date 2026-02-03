@@ -15,6 +15,8 @@ body {
     height: 100vh;
     z-index: 0;
     pointer-events: none;
+    transform: translateZ(0);
+    contain: layout style;
 }
 
 .cloud {
@@ -24,8 +26,13 @@ body {
     filter: blur(var(--blur, 80px));
     width: var(--size, 200px);
     height: var(--size, 200px);
-    left: var(--x, 0);
-    top: var(--y, 50vh);
+    left: 0;
+    top: 0;
+    transform: translate3d(var(--x, 0), var(--y, 50vh), 0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 body > *:not(#clouds) {
