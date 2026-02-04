@@ -39,6 +39,10 @@ const thicknessMap = {
     [Thickness.THICKEST]: 0.95
 };
 
+function getScale() {
+    return window.matchMedia('(max-width: 768px)').matches ? 0.65 : 1;
+}
+
 // speed variable converted to 0-1 scale, internally converted to vw/frame
 const Speed = Object.freeze({
     CALM: 0.05,
@@ -74,12 +78,13 @@ function createCloud({ x = 50, y = 50, size = Size.MD, thickness = Thickness.THI
     const widthInVw = (px / window.innerWidth) * 100;
 
     const cloud = document.createElement('div');
+    const scale = getScale();
     cloud.className = 'cloud';
     cloud.style.width = `${px}px`;
     cloud.style.height = `${px}px`;
     cloud.style.filter = `blur(${blur}px)`;
     cloud.style.opacity = opacityVal;
-    cloud.style.transform = `translate3d(${x}vw, ${cssY}vh, 0)`;
+    cloud.style.transform = `translate3d(${x}vw, ${cssY}vh, 0) scale(${scale})`;
     document.getElementById('clouds').appendChild(cloud);
 
     const cloudData = {
@@ -151,7 +156,8 @@ function windBlows() {
             cloud.y = 100 + wind.spacer;
         }
 
-        cloud.element.style.transform = `translate3d(${cloud.x}vw, ${100 - cloud.y}vh, 0)`;
+        const scale = getScale();
+        cloud.element.style.transform = `translate3d(${cloud.x}vw, ${100 - cloud.y}vh, 0) scale(${scale})`;
     }
 
     requestAnimationFrame(windBlows);
