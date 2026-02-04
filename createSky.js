@@ -1,3 +1,9 @@
+/**
+ * createSky.js
+ * 
+ * Create clouds with size, position, and thickness. Move clouds with wind, setting speed and direction of movement.
+ */
+
 const Size = Object.freeze({
     XS: "xs",
     SM: "sm",
@@ -43,32 +49,6 @@ const Speed = Object.freeze({
     FAST: 1.0
 });
 
-const wind = {
-    speed: Speed.LIGHT,
-    direction: 60, // degrees (clock-style: 0=up, 90=right, 180=down, 270=left)
-    spacer: 10
-};
-
-// Convert 0-1 speed to vw/frame (max 0.5 vw/frame at speed=1)
-function getSpeedVw() {
-    return wind.speed * 0.5;
-}
-
-/**
- * Set wind speed
- * @param {number} speed - 0 to 1 (or use Speed.CALM, BREEZE, LIGHT, MODERATE, STRONG, FAST)
- */
-function setWindSpeed(speed) {
-    wind.speed = Math.max(0, Math.min(1, speed));
-}
-
-/**
- * Set wind direction
- * @param {number} degrees - 0=up, 90=right, 180=down, 270=left
- */
-function setWindDirection(degrees) {
-    wind.direction = degrees;
-}
 
 const clouds = [];
 
@@ -95,11 +75,11 @@ function createCloud({ x = 50, y = 50, size = Size.MD, thickness = Thickness.THI
 
     const cloud = document.createElement('div');
     cloud.className = 'cloud';
-    cloud.style.setProperty('--x', `${x}vw`);
-    cloud.style.setProperty('--y', `${cssY}vh`);
-    cloud.style.setProperty('--size', `${px}px`);
-    cloud.style.setProperty('--blur', `${blur}px`);
-    cloud.style.setProperty('--opacity', opacityVal);
+    cloud.style.width = `${px}px`;
+    cloud.style.height = `${px}px`;
+    cloud.style.filter = `blur(${blur}px)`;
+    cloud.style.opacity = opacityVal;
+    cloud.style.transform = `translate3d(${x}vw, ${cssY}vh, 0)`;
     document.getElementById('clouds').appendChild(cloud);
 
     const cloudData = {
@@ -112,6 +92,34 @@ function createCloud({ x = 50, y = 50, size = Size.MD, thickness = Thickness.THI
     clouds.push(cloudData);
 
     return cloud;
+}
+
+
+const wind = {
+    speed: Speed.LIGHT,
+    direction: 60, // degrees (clock-style: 0=up, 90=right, 180=down, 270=left)
+    spacer: 10
+};
+
+// Convert 0-1 speed to vw/frame (max 0.5 vw/frame at speed=1)
+function getSpeedVw() {
+    return wind.speed * 0.5;
+}
+
+/**
+ * Set wind speed
+ * @param {number} speed - 0 to 1 (or use Speed.CALM, BREEZE, LIGHT, MODERATE, STRONG, FAST)
+ */
+function setWindSpeed(speed) {
+    wind.speed = Math.max(0, Math.min(1, speed));
+}
+
+/**
+ * Set wind direction
+ * @param {number} degrees - 0=up, 90=right, 180=down, 270=left
+ */
+function setWindDirection(degrees) {
+    wind.direction = degrees;
 }
 
 /**
@@ -143,8 +151,7 @@ function windBlows() {
             cloud.y = 100 + wind.spacer;
         }
 
-        cloud.element.style.setProperty('--x', `${cloud.x}vw`);
-        cloud.element.style.setProperty('--y', `${100 - cloud.y}vh`);
+        cloud.element.style.transform = `translate3d(${cloud.x}vw, ${100 - cloud.y}vh, 0)`;
     }
 
     requestAnimationFrame(windBlows);

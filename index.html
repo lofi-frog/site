@@ -8,6 +8,17 @@
 </head>
 <body>
     <div id="clouds"></div>
-    <script src="sky.js"></script>
+    
+    <details id="cloud-controls">
+        <summary>🌥️</summary>
+        <div>
+            <label>Speed: <input type="range" id="speedInput" min="0" max="1" step="0.05" value="0.2"></label>
+            <label>Direction: <input type="number" id="directionInput" min="0" max="360" value="60">°</label>
+            <button id="addCloudButton">+ Random Cloud</button>
+        </div>
+    </details>
+
+    <script src="createSky.js"></script>
+    <script src="userInteractiveSky.js"></script>
 </body>
 </html>

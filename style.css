@@ -1,10 +1,53 @@
+:root {
+    --text-color: #FFF;
+    
+    --bg-color-start: #a3a1a6;
+    --bg-color-top: #a3a2aa;
+    --bg-color-mid: #dbcaae;
+    --bg-color-end: #fdd597;
+    
+    --cloud-color: #f3ac94;
+    --cloud-opacity: 0.6;
+
+    --z-index-content: 100;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
-    background: #A3A1A6;
-    background: linear-gradient(160deg, #a3a2aa 45%, #DBCAAE 71%, #FDD597 89%);
+    background: var(--bg-color-start);
+    background: linear-gradient(160deg, var(--bg-color-top) 45%, var(--bg-color-mid) 71%, var(--bg-color-end) 89%);
     position: relative;
     overflow: hidden;
+}
+
+body > *:not(#clouds) {
+    position: relative;
+    z-index: 1;
+}
+
+body, p, h1, h2, h3, h4, h5, h6, span, a, li, ul, ol, button, summary, label, input, select, textarea, div:not(#clouds) {
+    color: var(--text-color);
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+button {
+    background: none;
+    border: 1px solid var(--text-color);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--bg-color-end);
+        border-color: var(--bg-color-end);
+    }
+}
+
+input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+    border-radius: 0.25rem;
+    border: 1px solid var(--text-color);
 }
 
 #clouds {
@@ -22,20 +65,28 @@ body {
 .cloud {
     position: absolute;
     border-radius: 50%;
-    background: rgba(243, 172, 148, var(--opacity, 0.6));
-    filter: blur(var(--blur, 80px));
-    width: var(--size, 200px);
-    height: var(--size, 200px);
+    background: var(--cloud-color);
+    opacity: var(--cloud-opacity);
     left: 0;
     top: 0;
-    transform: translate3d(var(--x, 0), var(--y, 50vh), 0);
     will-change: transform;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    perspective: 1000px;
 }
 
-body > *:not(#clouds) {
-    position: relative;
-    z-index: 1;
+#cloud-controls {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: var(--z-index-content);
+}
+
+#cloud-controls summary {
+    cursor: pointer;
+}
+
+#cloud-controls div {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
