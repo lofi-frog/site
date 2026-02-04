@@ -10,21 +10,21 @@
     --cloud-color: #f3ac94;
     --cloud-opacity: 0.6;
 
-    --z-index-content: 100;
+    --content-padding: 1rem;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
-    margin: 0;
     min-height: 100vh;
     background: var(--bg-color-start);
     background: linear-gradient(160deg, var(--bg-color-top) 45%, var(--bg-color-mid) 71%, var(--bg-color-end) 89%);
-    position: relative;
-    overflow: hidden;
-}
-
-body > *:not(#clouds) {
-    position: relative;
-    z-index: 1;
+    background-attachment: fixed;
 }
 
 body, p, h1, h2, h3, h4, h5, h6, span, a, li, ul, ol, button, summary, label, input, select, textarea, div:not(#clouds) {
@@ -56,24 +56,32 @@ ul li {
     margin-bottom: 0.75rem;
 }
 
-#about {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: var(--z-index-content);
-    max-width: 95vw;
+#about,
+#cloud-controls {
+    padding: var(--content-padding);
+    max-width: calc(100vw - var(--content-padding) * 2);
+    box-sizing: border-box;
+}
+
+#cloud-controls summary {
+    cursor: pointer;
+}
+
+#cloud-controls div {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 #clouds {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    z-index: 0;
+    z-index: -1;
     pointer-events: none;
-    transform: translateZ(0);
-    contain: layout style;
+    overflow: hidden;
 }
 
 .cloud {
@@ -87,21 +95,4 @@ ul li {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     transform-origin: center center;
-}
-
-#cloud-controls {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: var(--z-index-content);
-}
-
-#cloud-controls summary {
-    cursor: pointer;
-}
-
-#cloud-controls div {
-    display: inline-flex;
-    flex-direction: column;
-    gap: 0.5rem;
 }
