@@ -1,5 +1,6 @@
 :root {
     --text-color: #FFF;
+    --text-color-dark: #000;
     
     --bg-color-start: #a3a1a6;
     --bg-color-top: #a3a2aa;
@@ -48,11 +49,20 @@ button {
 input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
     border-radius: 0.25rem;
     border: 1px solid var(--text-color);
+    color: var(--text-color-dark);
 }
 
 ul li {
     margin-bottom: 0.75rem;
-  }
+}
+
+#about {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: var(--z-index-content);
+    max-width: 95vw;
+}
 
 #clouds {
     position: fixed;
@@ -76,13 +86,6 @@ ul li {
     will-change: transform;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-}
-
-#about {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: var(--z-index-content);
 }
 
 #cloud-controls {
