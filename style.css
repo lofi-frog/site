@@ -50,6 +50,10 @@ input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio"
     border: 1px solid var(--text-color);
 }
 
+ul li {
+    margin-bottom: 0.75rem;
+  }
+
 #clouds {
     position: fixed;
     top: 0;
@@ -72,6 +76,13 @@ input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio"
     will-change: transform;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+}
+
+#about {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: var(--z-index-content);
 }
 
 #cloud-controls {
