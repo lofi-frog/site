@@ -6,24 +6,16 @@
     <title>jules benjamin</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<script>
+    fetch('content.html')
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('about').innerHTML = html;
+        });
+</script>
 <body>
     <div id="clouds"></div>
-
-    <div id="about">
-        <h1>jules benjamin (<span style="font-weight: normal;">she/they</span>)</h1>
-        <ul>
-            <li>🌎 currently silly in Philly, but a Jersey girl at heart</li>
-            <li>⚒️ lead front-end software engineer at Ticketmaster ~ reimagining live concert ticketing marketplace with React & GSAP animations (<a href="https://www.linkedin.com/in/julietkbenjamin/">linkedin</a>)</li>
-            <li>🎶 musician (flute, piano, voice) ~ i love playing along & jamming! playlist tbd</li>
-            <li>🌈 hotline volunteer at <a href="https://avp.org/">NYC Anti-Violence Project</a>, supporting LGBTQ+ survivors of violence</li>
-            <li>📸 photographer of 35mm film ~ <a href="https://www.instagram.com/juwupix/">portfolio</a> (it's my instagram lol)</li>
-            <li>📚 public library enthusiast ~ currently reading <a href="https://www.robinwallkimmerer.com/books">Braiding Sweetgrass</a> and <a href="https://www.ibramxkendi.com/stampedbook">Stamped</a></li>
-            <li>🦮 dog & cat person ~ fostered <a href="https://www.instagram.com/itsgeorgieandwinston/">two sweet pitbull pups</a> who ended up being adopted together & used to petsit on <a href="https://wagwalking.com/walker-profile/JULIET11860">Wag</a> & <a href="https://r.rover.com/es7FVK">Rover</a></li>
-            <li>🌱 interests ~ crafting (beading, chainmail, drawing, handbuilding clay), houseplants, existing outside, food, espresso tonics, mutual aid & community organizing</li>
-        </ul>
-        <p>📬 lofi frog 333 at g mail</p>
-    </div>
-    
+    <div id="about"></div>
     <details id="cloud-controls">
         <summary>🌥️ cloud controls 🌥️</summary>
         <div>
